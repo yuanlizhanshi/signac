@@ -373,8 +373,8 @@ FindMotifs <- function(
   motif.names <- GetMotifData(
     object = object, assay = assay, slot = "motif.names"
   )
-  query.motifs <- motif.all[features, , drop = FALSE]
-  background.motifs <- motif.all[background, , drop = FALSE]
+  query.motifs <- motif.all[which(rownames(motif.all) %in% features), , drop = FALSE]
+  background.motifs <- motif.all[which(rownames(motif.all) %in% background), , drop = FALSE]
   query.counts <- colSums(x = query.motifs)
   background.counts <- colSums(x = background.motifs)
   percent.observed <- query.counts / length(x = features) * 100
